@@ -15,15 +15,7 @@ class UserRegisterTest extends TestCase
      */
     public function test_example(): void
     {
-        $requestLogin = $this->post('/api/login', [
-            'email' => 'corentin.jeannot2a@gmail.com',
-            'password' => 'root'
-        ]);
-
-        $token = $requestLogin->json()['token'];
-
-        $response = $this->withHeaders(['Authorization', 'Bearer ' . $token])
-        ->post('/api/register', [
+        $response = $this->post('/api/register', [
             'name' => 'user',
             'email' => 'user@gueulesdeloup.com',
             "email_verified_at" => Carbon::now(),
