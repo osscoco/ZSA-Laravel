@@ -7,11 +7,13 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 
 /**
  * Class User
- * 
+ *
  * @property int $id
  * @property string $firstname
  * @property string $lastname
@@ -24,12 +26,15 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @package App\Models
  */
-class User extends Model
+class User extends Authenticatable
 {
+    use HasApiTokens, Notifiable;
+
 	protected $table = 'users';
 
 	protected $casts = [
-		'email_verified_at' => 'datetime'
+		'email_verified_at' => 'datetime',
+        'password' => 'encrypted'
 	];
 
 	protected $hidden = [
