@@ -15,14 +15,13 @@ use App\Http\Controllers\AuthentificationController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::post('/register', [AuthentificationController::class, 'register']);
 
 Route::post('/login', [AuthentificationController::class, 'login']);
 
 Route::middleware('auth:sanctum')->group(function () {
 
-    Route::post('/register', [AuthentificationController::class, 'register']);
-
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });
 });
