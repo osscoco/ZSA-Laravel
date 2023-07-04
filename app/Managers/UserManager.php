@@ -20,9 +20,19 @@ class UserManager
             'created_at' => Carbon::now(),
             'updated_at' => NULL
         ]);
-
         $user->save();
-
         return $user;
+    }
+
+    public function update(User $user, array $request)
+    {
+        $data['updated_at'] = Carbon::now();
+        $user = User::where('id', $user->id)->update($request);
+        return $user;
+    }
+
+    public function delete(User $user)
+    {
+        $user = User::where('id', $user->id)->delete();
     }
 }
