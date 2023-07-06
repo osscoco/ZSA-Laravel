@@ -209,8 +209,6 @@ class AuthentificationController extends Controller
     {
         try {
 
-            $request->user()->currentAccessToken()->delete();
-
             //Message JSON retourné
             return response()->json([
                 'status' => true,
