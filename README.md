@@ -44,6 +44,14 @@ $ cp .env.example .env
 ## A l'aide de GIT BASH, dans le repertoire 'zerosixapi' :
 
 ```bash
+$ composer install
+```
+
+```bash
+$ npm install
+```
+
+```bash
 $ php artisan key:generate
 ```
 
