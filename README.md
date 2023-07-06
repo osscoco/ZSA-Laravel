@@ -74,7 +74,7 @@ $ GET : http://localhost:8000/api/generateRootAccount
 ## A l'aide de GIT BASH, dans le repertoire 'zerosixapi', ouvrir un cmd supplémentaire :
 
 ```bash
-$ php artisan test
+$ php artisan test --testsuite=Feature
 ```
 
 ## Ouvrir POSTMAN :
