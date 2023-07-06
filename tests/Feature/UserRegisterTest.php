@@ -16,16 +16,14 @@ class UserRegisterTest extends TestCase
     public function test_example(): void
     {
         $response = $this->post('/api/register', [
-            'name' => 'user',
-            'email' => 'user.gueulesdeloup@gmail.com',
+            'name' => 'Admin',
+            'email' => 'admin.gueulesdeloup@gmail.com',
             "email_verified_at" => Carbon::now(),
-            'password' => Hash::make('root'),
+            'password' => Hash::make('Not24get'),
             'remember_token' => NULL,
             'created_at' => Carbon::now(),
             'updated_at' => NULL
         ]);
-
-        var_dump($response->json()['message']);
 
         $response->assertStatus(200);
     }
