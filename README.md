@@ -12,6 +12,8 @@ Pré requis
 
   * PHP 8.1.0 or higher;
   * MySQL
+  * Composer
+  * Npm
 
 Récupération (GIT)
 ------------
