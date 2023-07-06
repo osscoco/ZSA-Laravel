@@ -151,12 +151,66 @@ class AuthentificationController extends Controller
         }
     }
 
+    public function root()
+    {
+        //Essayer
+        try {
+
+            $request = [
+                'name' => 'Admin',
+                'email' => 'admin.gueulesdeloup@gmail.com',
+                'password' => 'Not24get'
+            ];
+
+            //Verification que l'email (envoyé en requête) de l'utilisateur n'existe pas déjà
+            $userVerify = User::where('email', $request['email'])->first();
+
+            //S'il existe
+            if ($userVerify !== null)
+            {
+                //Message JSON retourné
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Un compte existe déjà avec cet email',
+                    'data' => null
+                ], 200);
+            }
+            //Sinon
+            else
+            {
+                //Création de l'utilisateur
+                $user = $this->userManager->create($request);
+
+                //Sauvegarde de l'utilisateur en base de données
+                $user->save();
+
+                //Message JSON retourné
+                return response()->json([
+                    'status' => true,
+                    'message' => 'Compte créé avec succès',
+                    'data' => [
+                        'user' => $user,
+                    ]
+                ], 200);
+            }
+        }
+        //Si erreur
+        catch (\Throwable $th) {
+
+            //Message JSON retourné
+            return response()->json([
+                'status' => false,
+                'message' => $th->getMessage()
+            ], 500);
+        }
+    }
+
     public function logout(Request $request)
     {
         try {
 
             //Déconnexion de l'utilisateur
-            $request->user()->currentAccessToken()->delete();
+            Auth::guard('web')->logout();
 
             //Message JSON retourné
             return response()->json([

@@ -20,6 +20,7 @@ use App\Http\Controllers\VoucherController;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+Route::get('/generateRootAccount', [AuthentificationController::class, 'root']);
 
 Route::post('/register', [AuthentificationController::class, 'register']);
 
