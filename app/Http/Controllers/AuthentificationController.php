@@ -150,4 +150,29 @@ class AuthentificationController extends Controller
             ], 500);
         }
     }
+
+    public function logout(Request $request)
+    {
+        try {
+
+            //Déconnexion de l'utilisateur
+            $request->user()->currentAccessToken()->delete();
+
+            //Message JSON retourné
+            return response()->json([
+                'status' => true,
+                'message' => 'Vous êtes déconnectez !'
+            ], 200);
+
+        }
+        //Si erreur
+        catch (\Throwable $th) {
+
+            //Message JSON retourné
+            return response()->json([
+                'status' => false,
+                'message' => $th->getMessage()
+            ], 500);
+        }
+    }
 }
