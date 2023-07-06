@@ -20,6 +20,7 @@ use App\Http\Controllers\VoucherController;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+Route::get('/generateRootAccount', [AuthentificationController::class, 'root']);
 
 Route::post('/register', [AuthentificationController::class, 'register']);
 
@@ -65,4 +66,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/vouchers/show/{id}', [VoucherController::class, 'show']);
     Route::put('/vouchers/update/{id}', [VoucherController::class, 'update']);
     Route::delete('/vouchers/delete/{id}', [VoucherController::class, 'destroy']);
+
+    Route::get('/logout', [AuthentificationController::class, 'logout']);
 });
