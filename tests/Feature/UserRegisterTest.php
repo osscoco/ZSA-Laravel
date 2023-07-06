@@ -17,7 +17,7 @@ class UserRegisterTest extends TestCase
     {
         $response = $this->post('/api/register', [
             'name' => 'user',
-            'email' => 'user@gueulesdeloup.com',
+            'email' => 'user.gueulesdeloup@gmail.com',
             "email_verified_at" => Carbon::now(),
             'password' => Hash::make('root'),
             'remember_token' => NULL,
