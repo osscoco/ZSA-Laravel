@@ -209,8 +209,7 @@ class AuthentificationController extends Controller
     {
         try {
 
-            //Déconnexion de l'utilisateur
-            Auth::guard('web')->logout();
+            $request->user()->currentAccessToken()->delete();
 
             //Message JSON retourné
             return response()->json([
